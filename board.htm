@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>Board - 낮엔 해처럼 밤엔 달처럼</title>
+<style>
+A:link{ text-decoration:none; color:#B9CBE4; }
+A:visited{ text-decoration:none; color:#B9CBE4; }
+A:active{ text-decoration:none; color:#FFFFFF; }
+A:hover{ text-decoration:none; color:#ffcc66; }
+
+body{
+  margin:0;
+  background:#0B1622;
+  color:#d8e3f2;
+  font-family:Gulim, Arial, sans-serif;
+  font-size:9pt;
+}
+
+.wrap{
+  width:670px;
+  margin:24px auto;
+  border:1px solid #000;
+  background:#000921;
+}
+
+.topbar{
+  height:22px;
+  background:#000;
+  color:#999;
+  line-height:22px;
+  padding-left:8px;
+  border-bottom:1px solid #000;
+}
+
+.hero{
+  width:668px;
+  min-height:130px;
+  background:#162940 url("image/intro_image/background.gif");
+  border-left:1px solid #000;
+  border-right:1px solid #000;
+}
+
+.hero table{
+  border-collapse:collapse;
+}
+
+.hero-title{
+  width:334px;
+  height:130px;
+  vertical-align:top;
+  background:#0d1d30;
+  color:#fff;
+}
+
+.hero-title .big{
+  color:#ffcc66;
+  font-weight:bold;
+  font-size:16px;
+  padding:18px 0 0 18px;
+}
+
+.hero-title .sub{
+  color:#9fb9d6;
+  line-height:1.7;
+  padding:18px;
+}
+
+.menu-box{
+  width:224px;
+  height:130px;
+  background:url("image/intro_image/background.gif");
+  vertical-align:top;
+}
+
+.menu-box img{
+  display:block;
+  width:224px;
+  height:22px;
+  border:0;
+}
+
+.content{
+  min-height:500px;
+  padding:18px;
+  background:#000921;
+  border-top:1px solid #000;
+}
+
+.section-title{
+  color:#ffcc66;
+  font-weight:bold;
+  font-size:15px;
+  margin-bottom:8px;
+}
+
+.notice{
+  border:1px solid #243b56;
+  background:#08182b;
+  color:#bcd0e8;
+  padding:10px;
+  line-height:1.7;
+  margin-bottom:14px;
+}
+
+.version-mark{
+  color:#ffcc66;
+  font-weight:bold;
+}
+
+.status{
+  color:#9fc7ff;
+  font-size:12px;
+  margin:8px 0 12px 0;
+}
+
+.status.error{
+  color:#ff9999;
+}
+
+.auth-box{
+  border:1px solid #2b4665;
+  background:#071426;
+  padding:12px;
+  margin-bottom:14px;
+}
+
+.auth-title{
+  color:#ffcc66;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+.auth-row{
+  display:flex;
+  gap:6px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.auth-row input{
+  height:28px;
+  background:#061426;
+  color:#eef7ff;
+  border:1px solid #2d4d72;
+  padding:0 8px;
+  font-family:Gulim, Arial, sans-serif;
+  font-size:12px;
+}
+
+.auth-row input[type="email"]{
+  width:220px;
+}
+
+.auth-row input[type="password"]{
+  width:150px;
+}
+
+.auth-row button,
+.toolbar button,
+.write-form button{
+  height:30px;
+  background:#23496f;
+  color:#fff;
+  border:1px solid #5c7fa5;
+  cursor:pointer;
+  font-family:Gulim, Arial, sans-serif;
+  font-size:12px;
+}
+
+.auth-row button:hover,
+.toolbar button:hover,
+.write-form button:hover{
+  background:#2f5f91;
+}
+
+.auth-message{
+  color:#9fc7ff;
+  margin-top:8px;
+  line-height:1.5;
+}
+
+.auth-message.warn{
+  color:#ffcc99;
+}
+
+.toolbar{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.toolbar input{
+  flex:1;
+  height:28px;
+  background:#071426;
+  color:#e9f3ff;
+  border:1px solid #2d4d72;
+  padding:0 8px;
+  font-family:Gulim, Arial, sans-serif;
+  font-size:12px;
+}
+
+.board-table{
+  width:100%;
+  border-collapse:collapse;
+  background:#061426;
+  border:1px solid #2b4665;
+  margin-bottom:14px;
+}
+
+.board-table th{
+  background:#132840;
+  color:#d7e7fb;
+  border-bottom:1px solid #2b4665;
+  height:28px;
+  font-weight:normal;
+}
+
+.board-table td{
+  border-bottom:1px solid #172d47;
+  height:30px;
+  color:#c7d9ee;
+  padding:4px 6px;
+}
+
+.board-table tr:hover td{
+  background:#0e2742;
+  color:#fff;
+  cursor:pointer;
+}
+
+.board-table .no{
+  width:42px;
+  text-align:center;
+  color:#91a9c3;
+}
+
+.board-table .title{
+  width:245px;
+}
+
+.board-table .writer{
+  width:74px;
+  text-align:center;
+}
+
+.board-table .attach{
+  width:54px;
+  text-align:center;
+  color:#9fb9d6;
+}
+
+.board-table .date{
+  width:112px;
+  font-size:11px;
+  color:#98adc6;
+  text-align:center;
+}
+
+.board-table .admin-col{
+  width:92px;
+  text-align:center;
+  white-space:nowrap;
+}
+
+.edit-btn{
+  height:22px;
+  background:#263f5d;
+  color:#fff;
+  border:1px solid #58799d;
+  cursor:pointer;
+  font-size:11px;
+  margin-right:4px;
+}
+
+.edit-btn:hover{
+  background:#31547d;
+}
+
+.delete-btn{
+  height:22px;
+  background:#4d2630;
+  color:#fff;
+  border:1px solid #8a4c58;
+  cursor:pointer;
+  font-size:11px;
+}
+
+.delete-btn:hover{
+  background:#70303f;
+}
+
+.empty{
+  text-align:center;
+  color:#8fa8c6;
+  padding:18px !important;
+}
+
+.detail{
+  border:1px solid #2b4665;
+  background:#071426;
+  min-height:130px;
+  padding:14px;
+  margin-bottom:16px;
+}
+
+.detail-empty{
+  color:#8fa8c6;
+  text-align:center;
+  padding-top:45px;
+}
+
+.detail-title{
+  color:#ffcc66;
+  font-weight:bold;
+  font-size:15px;
+  margin-bottom:8px;
+}
+
+.detail-meta{
+  color:#8fb0d2;
+  border-bottom:1px solid #203a59;
+  padding-bottom:8px;
+  margin-bottom:12px;
+}
+
+.detail-content{
+  color:#e6f0fb;
+  line-height:1.8;
+  white-space:normal;
+}
+
+.detail-actions{
+  text-align:right;
+  margin-top:12px;
+}
+
+.detail-actions button{
+  height:26px;
+  background:#23496f;
+  color:#fff;
+  border:1px solid #5c7fa5;
+  cursor:pointer;
+  font-family:Gulim, Arial, sans-serif;
+  font-size:12px;
+  margin-left:4px;
+}
+
+.detail-actions .detail-delete{
+  background:#4d2630;
+  border-color:#8a4c58;
+}
+
+.write-box{
+  border:1px solid #2b4665;
+  background:#08182b;
+  padding:14px;
+  display:block; /* LOGOUT_WRITE_VISIBLE_20260601 */
+}
+
+.write-box.show{
+  display:block;
+}
+
+.write-box .write-title{
+  color:#ffcc66;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
+.editing-label{
+  color:#ffcc66;
+  font-size:12px;
+  margin-left:8px;
+}
+
+.write-form label{
+  display:block;
+  color:#bcd0e8;
+  margin:8px 0 4px 0;
+}
+
+.write-form input,
+.write-form textarea{
+  width:100%;
+  box-sizing:border-box;
+  background:#061426;
+  color:#eef7ff;
+  border:1px solid #2d4d72;
+  padding:8px;
+  font-family:Gulim, Arial, sans-serif;
+  font-size:12px;
+}
+
+.write-form textarea{
+  height:110px;
+  resize:vertical;
+  line-height:1.6;
+}
+
+.write-form input[type="file"]{
+  padding:6px 8px;
+  background:#061425;
+  color:#d7e8ff;
+}
+
+.attachment-note{
+  margin:-2px 0 8px;
+  font-size:12px;
+  color:#9fb7d0;
+}
+
+.write-form .button-row{
+  text-align:right;
+  margin-top:10px;
+}
+
+.cancel-btn{
+  background:#3a3a3a !important;
+  border:1px solid #777 !important;
+  margin-right:6px;
+}
+
+.admin-only-note{
+  color:#9fb9d6;
+  border:1px dashed #2d4d72;
+  padding:10px;
+  margin-bottom:16px;
+  background:#061426;
+}
+
+.bottom-links{
+  margin-top:18px;
+  text-align:center;
+}
+
+.bottom-links a{
+  display:inline-block;
+  padding:5px 9px;
+  border:1px solid #2d4d72;
+  background:#071426;
+  color:#bcd0e8;
+  margin:0 2px;
+}
+
+
+.attachment-open-btn{
+  display:inline-block;
+  min-width:42px;
+  height:22px;
+  line-height:20px;
+  padding:0 7px;
+  background:#203c5c;
+  color:#f0f7ff;
+  border:1px solid #5b7fa4;
+  font-family:Gulim, Arial, sans-serif;
+  font-size:11px;
+  cursor:pointer;
+  box-sizing:border-box;
+}
+
+.attachment-open-btn:hover{
+  background:#2f5f91;
+  color:#fff;
+}
+
+.attachment-open-btn.image-type{
+  background:#244b48;
+  border-color:#5d908b;
+}
+
+.attachment-open-btn.video-type{
+  background:#b01818; /* 동영상 버튼은 빨간색으로 표시 */
+  border-color:#ff6b6b;
+  color:#fff;
+}
+
+.attachment-open-btn.doc-type{
+  background:#463b25;
+  border-color:#8a7650;
+}
+
+.attachment-popup-mask{
+  display:none;
+  position:fixed;
+  left:0;
+  top:0;
+  right:0;
+  bottom:0;
+  background:rgba(0,0,0,0.62);
+  z-index:9999;
+}
+
+.attachment-popup{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:86%;
+  max-width:820px;
+  height:78%;
+  max-height:720px;
+  transform:translate(-50%, -50%);
+  background:#071426;
+  border:1px solid #5b7fa4;
+  box-shadow:0 0 18px rgba(0,0,0,0.8);
+  color:#d8e3f2;
+}
+
+.attachment-popup-head{
+  height:36px;
+  line-height:36px;
+  background:#132840;
+  border-bottom:1px solid #2b4665;
+  padding:0 8px;
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.attachment-popup-title{
+  flex:1;
+  color:#ffcc66;
+  font-weight:bold;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+
+.attachment-popup-head button{
+  height:24px;
+  background:#23496f;
+  color:#fff;
+  border:1px solid #5c7fa5;
+  cursor:pointer;
+  font-family:Gulim, Arial, sans-serif;
+  font-size:12px;
+}
+
+.attachment-popup-head button:hover{
+  background:#2f5f91;
+}
+
+.attachment-popup-body{
+  height:calc(100% - 36px);
+  background:#000921;
+  overflow:auto;
+  text-align:center;
+}
+
+.attachment-popup-body img{
+  max-width:100%;
+  height:auto;
+  margin:0 auto;
+  display:block;
+}
+
+.attachment-popup-body video{
+  width:100%;
+  max-height:100%;
+  background:#000;
+}
+
+.attachment-popup-body iframe{
+  width:100%;
+  height:100%;
+  border:0;
+  background:#fff;
+}
+
+.attachment-popup-actions{
+  padding:16px 20px 4px 20px;
+  text-align:center;
+}
+
+.attachment-popup-action-btn{
+  display:inline-block;
+  min-width:96px;
+  margin:4px;
+  padding:6px 12px;
+  border:1px solid #547ea9;
+  border-radius:4px;
+  background:#173756;
+  color:#ffffff !important;
+  font-size:9pt;
+  cursor:pointer;
+}
+
+.attachment-popup-action-btn:hover{
+  background:#2f5f91;
+}
+
+.attachment-popup-message{
+  padding:18px 20px 34px 20px;
+  color:#bcd0e8;
+  line-height:1.8;
+  text-align:left;
+}
+
+</style>
+
+<script language="JavaScript">
+function na_restore_img_src(name, nsdoc){
+  var img = document.getElementsByName(name)[0];
+  if (img && img.altsrc) {
+    img.src = img.altsrc;
+    img.altsrc = null;
+  }
+}
+function na_change_img_src(name, nsdoc, rpath, preload){
+  var img = document.getElementsByName(name)[0];
+  if (img) {
+    img.altsrc = img.src;
+    img.src = rpath;
+  }
+}
+function na_preload_img(){
+  if (document.preloadlist == null) document.preloadlist = [];
+  for (var i=1; i<arguments.length; i++) {
+    var img = new Image();
+    img.src = arguments[i];
+    document.preloadlist.push(img);
+  }
+}
+</script>
+</head>
+
+<body OnLoad="na_preload_img(false, 'image/intro_memu_btn/myprofile.gif', 'image/intro_memu_btn/passion.gif', 'image/intro_memu_btn/memory.gif', 'image/intro_memu_btn/music.gif', 'image/intro_memu_btn/board.gif', 'image/intro_memu_btn/family.gif');">
+
+<div class="wrap">
+  <div class="topbar">
+    <a href="test1.html">낮엔 해처럼 밤엔 달처럼</a>
+  </div>
+
+  <div class="hero">
+    <table width="668" cellpadding="0" cellspacing="0">
+      <tr>
+        <td class="hero-title">
+          <div class="big">Board</div>
+          <div class="sub">
+            Firebase Firestore와 연결된<br>
+            글쓰기·수정·삭제 게시판입니다.
+          </div>
+        </td>
+        <td width="108" height="130" background="image/intro_image/1112715142_3.gif">&nbsp;</td>
+        <td class="menu-box">
+          <a href="profile.htm" OnMouseOut="na_restore_img_src('a001','document')" OnMouseOver="na_change_img_src('a001','document','image/intro_memu_btn/myprofile.gif',true)"><img src="image/intro_memu_btn/myprofile1.gif" alt="나의프로필" name="a001"></a>
+          <a href="passion.htm" OnMouseOut="na_restore_img_src('a002','document')" OnMouseOver="na_change_img_src('a002','document','image/intro_memu_btn/passion.gif',true)"><img src="image/intro_memu_btn/passion1.gif" alt="나의 열정들" name="a002"></a>
+          <a href="memory.htm" OnMouseOut="na_restore_img_src('a003','document')" OnMouseOver="na_change_img_src('a003','document','image/intro_memu_btn/memory.gif',true)"><img src="image/intro_memu_btn/memory1.gif" alt="추억의 사진들" name="a003"></a>
+          <a href="music.htm" OnMouseOut="na_restore_img_src('a004','document')" OnMouseOver="na_change_img_src('a004','document','image/intro_memu_btn/music.gif',true)"><img src="image/intro_memu_btn/music1.gif" alt="음악만이 내세상" name="a004"></a>
+          <a href="board.htm" OnMouseOut="na_restore_img_src('a005','document')" OnMouseOver="na_change_img_src('a005','document','image/intro_memu_btn/board.gif',true)"><img src="image/intro_memu_btn/board1.gif" alt="가슴을 담은 이야기들" name="a005"></a>
+          <a href="family.htm" OnMouseOut="na_restore_img_src('a006','document')" OnMouseOver="na_change_img_src('a006','document','image/intro_memu_btn/family.gif',true)"><img src="image/intro_memu_btn/family1.gif" alt="가족앨범" name="a006"></a>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="content">
+    <div class="section-title">가슴을 담은 이야기들</div>
+
+    <div class="notice">
+      <span class="version-mark">Board 3단계 적용됨:</span>
+      방문자는 글을 읽고 글을 쓸 수 있으며, 관리자로 로그인하면 수정·삭제가 가능합니다.
+    </div>
+
+    <div class="auth-box">
+      <div class="auth-title">관리자 로그인</div>
+      <div id="loginArea" class="auth-row">
+        <input type="email" id="loginEmail" value="h28089724@gmail.com" placeholder="관리자 이메일">
+        <input type="password" id="loginPassword" placeholder="비밀번호">
+        <button type="button" id="loginBtn">로그인</button>
+      </div>
+      <div id="logoutArea" class="auth-row" style="display:none;">
+        <span id="loginInfo"></span>
+        <button type="button" id="logoutBtn">로그아웃</button>
+      </div>
+      <div id="authMessage" class="auth-message">로그인 전에도 글쓰기는 가능하며, 수정·삭제는 관리자 로그인 후 가능합니다.</div>
+    </div>
+
+    <div class="toolbar">
+      <input type="text" id="boardSearch" placeholder="제목, 글쓴이, 내용 검색">
+      <button type="button" id="reloadBtn">새로고침</button>
+    </div>
+
+    <div id="statusBox" class="status">Firebase 연결 준비 중...</div>
+
+    <table class="board-table">
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>제목</th>
+          <th>글쓴이</th>
+          <th>첨부</th>
+          <th>날짜</th>
+          <th id="adminHead" style="display:none;">관리</th>
+        </tr>
+      </thead>
+      <tbody id="boardList">
+        <tr><td colspan="5" class="empty">게시글을 불러오는 중입니다.</td></tr>
+      </tbody>
+    </table>
+
+    <div id="boardDetail" class="detail">
+      <div class="detail-empty">위쪽 목록에서 글을 선택하면 내용이 표시됩니다.</div>
+    </div>
+
+    <div id="adminOnlyNote" class="admin-only-note">
+      글쓰기는 누구나 가능하고, 수정·삭제는 관리자 로그인 후 표시됩니다.
+    </div>
+
+    <div id="writeBox" class="write-box">
+      <div class="write-title"><span id="writeTitleText">새 글 쓰기</span><span id="editingLabel" class="editing-label"></span></div>
+      <form id="writeForm" class="write-form">
+        <label for="postTitle">제목</label>
+        <input type="text" id="postTitle" maxlength="100">
+
+        <label for="postWriter">글쓴이</label>
+        <input type="text" id="postWriter" maxlength="30" placeholder="글쓴이">
+
+        <label for="postContent">내용</label>
+        <textarea id="postContent"></textarea>
+
+        <label for="postAttachmentUrl">첨부 링크</label>
+        <input type="url" id="postAttachmentUrl" maxlength="500" placeholder="https://drive.google.com/...">
+
+        <label for="postAttachmentName">첨부 표시명</label>
+        <input type="text" id="postAttachmentName" maxlength="80" placeholder="예: 첨부파일 보기">
+
+        <label for="postAttachmentKind">첨부 종류</label>
+        <select id="postAttachmentKind">
+          <option value="auto">자동판단</option>
+          <option value="image">이미지</option>
+          <option value="video">동영상</option>
+          <option value="doc">문서</option>
+        </select>
+        <div class="attachment-note">WMV처럼 링크만으로 종류 판단이 안 될 때는 첨부 종류를 동영상으로 선택하세요.</div>
+        <div class="attachment-note">Firebase Storage를 쓰지 않고, Google Drive 등에 올린 파일 링크를 입력하는 방식입니다.</div>
+
+        <div class="button-row">
+          <button type="button" id="cancelEditBtn" class="cancel-btn" style="display:none;">수정 취소</button>
+          <button type="submit" id="savePostBtn">저장</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="bottom-links">
+      <a href="test1.html">Home</a>
+      <a href="profile.htm">Profile</a>
+      <a href="passion.htm">Passion</a>
+      <a href="memory.htm">Memory</a>
+      <a href="music.htm">Music</a>
+      <a href="family.htm">Family</a>
+    </div>
+  </div>
+</div>
+
+
+<div id="attachmentPopupMask" class="attachment-popup-mask">
+  <div class="attachment-popup">
+    <div class="attachment-popup-head">
+      <div id="attachmentPopupTitle" class="attachment-popup-title">첨부파일</div>
+      <button type="button" id="attachmentFullBtn">전체창 보기</button>
+      <button type="button" id="attachmentCloseBtn">닫기</button>
+    </div>
+    <div id="attachmentPopupBody" class="attachment-popup-body"></div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/12.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore-compat.js"></script>
+
+<script>
+/* BOARD_VERIFIED_DATE_FORMAT_YY_MM_DD_HHMM_AND_LOGOUT_WRITE_VISIBLE */
+(function(){
+  var ADMIN_EMAIL = "h28089724@gmail.com";
+
+  var firebaseConfig = {
+    apiKey: "AIzaSyDZL_49FvVD9tGUlzP_FCQMdI80xpn8Upg",
+    authDomain: "hkd-myhome.firebaseapp.com",
+    projectId: "hkd-myhome",
+    storageBucket: "hkd-myhome.firebasestorage.app",
+    messagingSenderId: "488602177315",
+    appId: "1:488602177315:web:a40ce0832db87e95fd4696",
+    measurementId: "G-0LG0HLP3YN"
+  };
+
+  var db = null;
+  var cachedPosts = [];
+  var currentUser = null;
+  var isAdmin = false;
+  var editingPostId = null;
+
+  var boardList = document.getElementById("boardList");
+  var boardDetail = document.getElementById("boardDetail");
+  var writeForm = document.getElementById("writeForm");
+  var titleInput = document.getElementById("postTitle");
+  var writerInput = document.getElementById("postWriter");
+  var contentInput = document.getElementById("postContent");
+  var attachmentUrlInput = document.getElementById("postAttachmentUrl");
+  var attachmentNameInput = document.getElementById("postAttachmentName");
+  var attachmentKindInput = document.getElementById("postAttachmentKind");
+  var statusBox = document.getElementById("statusBox");
+  var searchInput = document.getElementById("boardSearch");
+  var reloadBtn = document.getElementById("reloadBtn");
+  var writeBox = document.getElementById("writeBox");
+  var adminOnlyNote = document.getElementById("adminOnlyNote");
+  var adminHead = document.getElementById("adminHead");
+  var writeTitleText = document.getElementById("writeTitleText");
+  var editingLabel = document.getElementById("editingLabel");
+  var cancelEditBtn = document.getElementById("cancelEditBtn");
+  var savePostBtn = document.getElementById("savePostBtn");
+
+  var loginArea = document.getElementById("loginArea");
+  var logoutArea = document.getElementById("logoutArea");
+  var loginEmail = document.getElementById("loginEmail");
+  var loginPassword = document.getElementById("loginPassword");
+  var loginBtn = document.getElementById("loginBtn");
+  var logoutBtn = document.getElementById("logoutBtn");
+  var loginInfo = document.getElementById("loginInfo");
+  var authMessage = document.getElementById("authMessage");
+  var attachmentPopupMask = document.getElementById("attachmentPopupMask");
+  var attachmentPopupTitle = document.getElementById("attachmentPopupTitle");
+  var attachmentPopupBody = document.getElementById("attachmentPopupBody");
+  var attachmentFullBtn = document.getElementById("attachmentFullBtn");
+  var attachmentCloseBtn = document.getElementById("attachmentCloseBtn");
+  var currentAttachmentUrl = "";
+
+  function setStatus(message, error) {
+    statusBox.innerHTML = escapeHtml(message);
+    statusBox.className = error ? "status error" : "status";
+  }
+
+  function setAuthMessage(message, warn) {
+    authMessage.innerHTML = escapeHtml(message);
+    authMessage.className = warn ? "auth-message warn" : "auth-message";
+  }
+
+  function escapeHtml(text) {
+    return String(text == null ? "" : text)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  // 수정확인: 날짜 표시는 반드시 YY-MM-DD/HH:mm 형식으로 표시합니다. 예: 26-06-01/23:38
+  // Firestore Timestamp, Date, 숫자 timestamp, ISO 문자열, 한국어 날짜 문자열을 모두 같은 형식으로 강제 변환합니다.
+  function twoDigit(num) {
+    num = Number(num);
+    if (isNaN(num)) num = 0;
+    return num < 10 ? "0" + num : String(num);
+  }
+
+  function parseDateValue(value) {
+    if (value == null || value === "") return null;
+
+    // Firestore Timestamp compat 객체
+    if (value && typeof value.toDate === "function") {
+      return value.toDate();
+    }
+
+    // Date 객체
+    if (value instanceof Date) {
+      return value;
+    }
+
+    // Firestore Timestamp가 일반 객체로 넘어온 경우
+    if (value && typeof value.seconds === "number") {
+      return new Date(value.seconds * 1000);
+    }
+    if (value && typeof value._seconds === "number") {
+      return new Date(value._seconds * 1000);
+    }
+
+    // 숫자 timestamp
+    if (typeof value === "number") {
+      // 10자리 초 단위 timestamp와 13자리 밀리초 timestamp 모두 대응
+      return new Date(value < 10000000000 ? value * 1000 : value);
+    }
+
+    // 문자열 날짜
+    if (typeof value === "string") {
+      var text = value.trim();
+      if (!text) return null;
+
+      // 이미 원하는 모양과 비슷한 경우도 다시 Date로 만들지 말고 직접 분해합니다.
+      // 예: 26-06-01/23:38, 2026. 6. 1. 오후 11:38, 2026년 6월 1일 23:38
+      var dateMatch = text.match(/(\d{2,4})\D+(\d{1,2})\D+(\d{1,2})/);
+      if (dateMatch) {
+        var year = Number(dateMatch[1]);
+        if (year < 100) year += 2000;
+        var month = Number(dateMatch[2]) - 1;
+        var day = Number(dateMatch[3]);
+
+        var rest = text.slice(dateMatch.index + dateMatch[0].length);
+        var hour = 0;
+        var minute = 0;
+        var timeMatch = rest.match(/(\d{1,2})\D+(\d{1,2})/);
+        if (timeMatch) {
+          hour = Number(timeMatch[1]);
+          minute = Number(timeMatch[2]);
+        }
+
+        var ampm = "";
+        if (/오후|PM|pm/.test(text)) ampm = "pm";
+        if (/오전|AM|am/.test(text)) ampm = "am";
+        if (ampm === "pm" && hour < 12) hour += 12;
+        if (ampm === "am" && hour === 12) hour = 0;
+
+        return new Date(year, month, day, hour, minute);
+      }
+
+      // ISO 등 브라우저가 해석할 수 있는 문자열
+      var parsed = new Date(text);
+      if (!isNaN(parsed.getTime())) return parsed;
+    }
+
+    return null;
+  }
+
+  function formatDate(value) {
+    var date = parseDateValue(value);
+    if (!date || isNaN(date.getTime())) return "";
+
+    var yy = String(date.getFullYear()).slice(-2);
+    var mm = twoDigit(date.getMonth() + 1);
+    var dd = twoDigit(date.getDate());
+    var hh = twoDigit(date.getHours());
+    var mi = twoDigit(date.getMinutes());
+
+    return yy + "-" + mm + "-" + dd + "/" + hh + ":" + mi;
+  }
+
+  // 혹시 기존 데이터의 날짜 필드명이 createdAt이 아닐 경우까지 같이 확인합니다.
+  function getPostDateText(post) {
+    var value = post.createdAt || post.date || post.createdDate || post.writeDate || post.writtenAt || post.timestamp || post.time || post.created_at;
+    return formatDate(value);
+  }
+
+  // 첨부 링크가 없는 글은 '-'로 표시합니다. 링크가 있으면 이미지/동영상/문서 버튼으로 표시하고 팝업으로 엽니다.
+  function getAttachmentData(post) {
+    var url = post.attachmentUrl || post.attachmentLink || post.fileUrl || post.downloadUrl || "";
+    var name = post.attachmentName || post.fileName || post.filename || "";
+
+    if (post.attachments && post.attachments.length) {
+      var first = post.attachments[0] || {};
+      url = first.url || first.link || first.downloadUrl || url;
+      name = first.name || first.fileName || first.filename || name;
+    }
+
+    var savedKind = post.attachmentKind || post.fileKind || post.kind || "";
+    if (savedKind !== "image" && savedKind !== "video" && savedKind !== "doc") {
+      savedKind = detectAttachmentKind(url, name);
+    }
+
+    return {
+      url: url,
+      name: name || "첨부파일",
+      kind: savedKind
+    };
+  }
+
+  function detectAttachmentKind(url, name) {
+    var rawText = String(url || "") + " " + String(name || "");
+    var text = rawText.toLowerCase();
+    try {
+      text = decodeURIComponent(text);
+    } catch (e) {}
+
+    var beforeQuery = text.split("?")[0].split("#")[0];
+
+    if (/\.(jpg|jpeg|png|gif|webp|bmp|svg)(?:$|[\s\/?#&=._-])/i.test(beforeQuery + " ")) return "image";
+    if (/\.(mp4|webm|ogg|ogv|mov|m4v|avi|wmv|asf|mpeg|mpg|3gp|mkv)(?:$|[\s\/?#&=._-])/i.test(beforeQuery + " ")) return "video";
+    if (/\.(pdf|doc|docx|xls|xlsx|ppt|pptx|txt|hwp|hwpx|zip|dwg|dxf)(?:$|[\s\/?#&=._-])/i.test(beforeQuery + " ")) return "doc";
+
+    // Google Drive 공유 링크처럼 주소에 확장자가 사라지는 경우를 위해 표시명/링크 전체에 확장자 단어가 있으면 한 번 더 판단합니다.
+    if (/(^|[\s._%-])(mp4|webm|ogg|ogv|mov|m4v|avi|wmv|asf|mpeg|mpg|3gp|mkv)($|[\s._%-])/i.test(text)) return "video";
+    if (/(^|[\s._%-])(jpg|jpeg|png|gif|webp|bmp|svg)($|[\s._%-])/i.test(text)) return "image";
+
+    if (/drive\.google\.com|docs\.google\.com/i.test(text)) return "doc";
+    return "doc";
+  }
+
+  function getAttachmentLabel(kind) {
+    if (kind === "image") return "이미지";
+    if (kind === "video") return "동영상";
+    return "문서";
+  }
+
+  function getAttachmentClass(kind) {
+    if (kind === "image") return "image-type";
+    if (kind === "video") return "video-type";
+    return "doc-type";
+  }
+
+  function getAttachmentHtml(post) {
+    var data = getAttachmentData(post);
+    if (!data.url) return "-";
+
+    return '<button type="button" class="attachment-open-btn ' + getAttachmentClass(data.kind) + '" ' +
+      'data-url="' + escapeHtml(data.url) + '" ' +
+      'data-name="' + escapeHtml(data.name) + '" ' +
+      'data-kind="' + escapeHtml(data.kind) + '">' +
+      escapeHtml(getAttachmentLabel(data.kind)) +
+      '</button>';
+  }
+
+  function getAttachmentDetailHtml(post) {
+    var html = getAttachmentHtml(post);
+    if (!html || html === "-") return "";
+    return '<div class="detail-meta">첨부: ' + html + '</div>';
+  }
+
+  function convertGoogleDrivePreviewUrl(url) {
+    var text = String(url || "");
+    var match = text.match(/\/file\/d\/([^\/]+)/);
+    if (match && match[1]) {
+      return "https://drive.google.com/file/d/" + match[1] + "/preview";
+    }
+
+    match = text.match(/[?&]id=([^&]+)/);
+    if (match && match[1] && text.indexOf("drive.google.com") > -1) {
+      return "https://drive.google.com/file/d/" + match[1] + "/preview";
+    }
+
+    return text;
+  }
+
+  function getUrlExtension(url, name) {
+    var text = String(name || "") + " " + String(url || "");
+    try { text = decodeURIComponent(text); } catch (e) {}
+    var match = text.toLowerCase().match(/\.([a-z0-9]{2,5})(?:$|[\s\/\?#&=._-])/);
+    return match && match[1] ? match[1] : "";
+  }
+
+  function isBrowserPlayableVideo(ext, url) {
+    var text = String(url || "").toLowerCase();
+    if (/drive\.google\.com|docs\.google\.com/.test(text)) return false;
+    return /^(mp4|webm|ogg|ogv|m4v)$/.test(String(ext || "").toLowerCase());
+  }
+
+  function makeAttachmentActionButtons(url) {
+    var safeUrl = escapeHtml(url);
+    return '<div class="attachment-popup-actions">' +
+      '<a class="attachment-popup-action-btn" href="' + safeUrl + '" target="_blank" rel="noopener">파일 열기</a>' +
+      '<a class="attachment-popup-action-btn" href="' + safeUrl + '" target="_blank" rel="noopener" download>다운로드</a>' +
+      '</div>';
+  }
+
+  function openAttachmentPopup(url, name, kind) {
+    currentAttachmentUrl = url || "";
+    attachmentPopupTitle.innerHTML = escapeHtml(name || getAttachmentLabel(kind));
+    attachmentPopupBody.innerHTML = "";
+
+    if (!currentAttachmentUrl) return;
+
+    if (kind === "image") {
+      attachmentPopupBody.innerHTML = '<img src="' + escapeHtml(currentAttachmentUrl) + '" alt="' + escapeHtml(name || "이미지") + '">' +
+        makeAttachmentActionButtons(currentAttachmentUrl);
+    } else if (kind === "video") {
+      var ext = getUrlExtension(currentAttachmentUrl, name);
+      var previewUrl = convertGoogleDrivePreviewUrl(currentAttachmentUrl);
+
+      if (isBrowserPlayableVideo(ext, currentAttachmentUrl)) {
+        attachmentPopupBody.innerHTML = '<video src="' + escapeHtml(currentAttachmentUrl) + '" controls playsinline></video>' +
+          makeAttachmentActionButtons(currentAttachmentUrl) +
+          '<div class="attachment-popup-message">브라우저 정책상 소리가 있는 동영상은 자동재생이 차단될 수 있습니다. 화면 안의 재생 버튼으로 실행하세요.</div>';
+      } else {
+        attachmentPopupBody.innerHTML = '<iframe src="' + escapeHtml(previewUrl) + '"></iframe>' +
+          makeAttachmentActionButtons(currentAttachmentUrl) +
+          '<div class="attachment-popup-message"><b>WMV/AVI/MKV 같은 파일은 브라우저 팝업 안에서 바로 재생되지 않을 수 있습니다.</b><br>위 미리보기가 작동하지 않으면 <b>파일 열기</b> 또는 <b>다운로드</b> 버튼을 눌러 확인하세요. 오른쪽 위 <b>전체창 보기</b>는 사용자가 선택할 때만 새 창으로 엽니다.</div>';
+      }
+    } else {
+      var docPreviewUrl = convertGoogleDrivePreviewUrl(currentAttachmentUrl);
+      attachmentPopupBody.innerHTML = '<iframe src="' + escapeHtml(docPreviewUrl) + '"></iframe>' +
+        makeAttachmentActionButtons(currentAttachmentUrl) +
+        '<div class="attachment-popup-message">문서 미리보기가 표시되지 않으면 <b>파일 열기</b>, <b>다운로드</b> 또는 오른쪽 위 <b>전체창 보기</b> 버튼으로 확인하세요.</div>';
+    }
+
+    attachmentPopupMask.style.display = "block";
+  }
+
+  function closeAttachmentPopup() {
+    attachmentPopupMask.style.display = "none";
+    attachmentPopupBody.innerHTML = "";
+    currentAttachmentUrl = "";
+  }
+
+  function normalizeAttachmentUrl(url) {
+    url = String(url || "").trim();
+    if (!url) return "";
+    if (!/^https?:\/\//i.test(url)) {
+      url = "https://" + url;
+    }
+    return url;
+  }
+
+  function getAttachmentLinkData() {
+    var url = normalizeAttachmentUrl(attachmentUrlInput ? attachmentUrlInput.value : "");
+    var name = attachmentNameInput ? attachmentNameInput.value.trim() : "";
+    var kind = attachmentKindInput ? attachmentKindInput.value : "auto";
+
+    if (!url) {
+      return {
+        attachmentUrl: "",
+        attachmentName: "",
+        attachmentKind: ""
+      };
+    }
+
+    if (kind !== "image" && kind !== "video" && kind !== "doc") {
+      kind = detectAttachmentKind(url, name);
+    }
+
+    return {
+      attachmentUrl: url,
+      attachmentName: name || "보기",
+      attachmentKind: kind
+    };
+  }
+
+  function resetWriteForm() {
+    editingPostId = null;
+    writeForm.reset();
+    writerInput.value = isAdmin ? "관리자" : "";
+    writeTitleText.innerHTML = "새 글 쓰기";
+    editingLabel.innerHTML = "";
+    savePostBtn.innerHTML = "저장";
+    cancelEditBtn.style.display = "none";
+  }
+
+  function updateAuthUI() {
+    if (isAdmin) {
+      loginArea.style.display = "none";
+      logoutArea.style.display = "flex";
+      loginInfo.innerHTML = "관리자 로그인 중: " + escapeHtml(currentUser.email);
+      writeBox.className = "write-box show";
+      adminOnlyNote.style.display = "none";
+      adminHead.style.display = "";
+      setAuthMessage("관리자 권한으로 글쓰기·수정·삭제가 가능합니다.", false);
+    } else {
+      resetWriteForm();
+      loginArea.style.display = "flex";
+      logoutArea.style.display = "none";
+      loginInfo.innerHTML = "";
+      writeBox.className = "write-box show";
+      adminOnlyNote.style.display = "";
+      adminHead.style.display = "none";
+
+      if (currentUser && currentUser.email !== ADMIN_EMAIL) {
+        setAuthMessage("로그인했지만 관리자 이메일이 아닙니다. 글쓰기는 가능하고 수정·삭제는 관리자만 가능합니다.", false);
+      } else {
+        setAuthMessage("로그인 전에도 글쓰기는 가능하며, 수정·삭제는 관리자 로그인 후 가능합니다.", false);
+      }
+    }
+
+    renderPosts(cachedPosts);
+  }
+
+  function renderPosts(posts) {
+    var colspan = isAdmin ? 6 : 5;
+
+    if (!posts.length) {
+      boardList.innerHTML = '<tr><td colspan="' + colspan + '" class="empty">등록된 글이 없습니다.</td></tr>';
+      boardDetail.innerHTML = '<div class="detail-empty">위쪽 목록에서 글을 선택하면 내용이 표시됩니다.</div>';
+      return;
+    }
+
+    var html = "";
+    for (var i = 0; i < posts.length; i++) {
+      var post = posts[i];
+      html += '<tr class="post-row" data-id="' + escapeHtml(post.id) + '">' +
+        '<td class="no">' + (posts.length - i) + '</td>' +
+        '<td class="title">' + escapeHtml(post.title || "(제목 없음)") + '</td>' +
+        '<td class="writer">' + escapeHtml(post.writer || "글쓴이 없음") + '</td>' +
+        '<td class="attach">' + getAttachmentHtml(post) + '</td>' +
+        '<td class="date">' + escapeHtml(getPostDateText(post)) + '</td>';
+
+      if (isAdmin) {
+        html += '<td class="admin-col">' +
+          '<button type="button" class="edit-btn" data-edit-id="' + escapeHtml(post.id) + '">수정</button>' +
+          '<button type="button" class="delete-btn" data-delete-id="' + escapeHtml(post.id) + '">삭제</button>' +
+          '</td>';
+      }
+
+      html += '</tr>';
+    }
+    boardList.innerHTML = html;
+
+    var rows = document.querySelectorAll(".post-row");
+    for (var r = 0; r < rows.length; r++) {
+      rows[r].onclick = function(e) {
+        if (e.target && (e.target.getAttribute("data-delete-id") || e.target.getAttribute("data-edit-id") || String(e.target.className || "").indexOf("attachment-open-btn") > -1)) return;
+        var id = this.getAttribute("data-id");
+        for (var j = 0; j < cachedPosts.length; j++) {
+          if (cachedPosts[j].id === id) {
+            renderDetail(cachedPosts[j]);
+            break;
+          }
+        }
+      };
+    }
+
+    var editBtns = document.querySelectorAll(".edit-btn");
+    for (var e = 0; e < editBtns.length; e++) {
+      editBtns[e].onclick = function(ev) {
+        ev.stopPropagation();
+        startEditPost(this.getAttribute("data-edit-id"));
+      };
+    }
+
+    var deleteBtns = document.querySelectorAll(".delete-btn");
+    for (var d = 0; d < deleteBtns.length; d++) {
+      deleteBtns[d].onclick = function(e) {
+        e.stopPropagation();
+        deletePost(this.getAttribute("data-delete-id"));
+      };
+    }
+
+    renderDetail(posts[0]);
+  }
+
+  function renderDetail(post) {
+    var actionHtml = "";
+    if (isAdmin) {
+      actionHtml =
+        '<div class="detail-actions">' +
+          '<button type="button" id="detailEditBtn" data-id="' + escapeHtml(post.id) + '">수정</button>' +
+          '<button type="button" id="detailDeleteBtn" class="detail-delete" data-id="' + escapeHtml(post.id) + '">삭제</button>' +
+        '</div>';
+    }
+
+    boardDetail.innerHTML =
+      '<div class="detail-title">' + escapeHtml(post.title || "(제목 없음)") + '</div>' +
+      '<div class="detail-meta">글쓴이: ' + escapeHtml(post.writer || "글쓴이 없음") +
+      ' &nbsp; | &nbsp; 날짜: ' + escapeHtml(getPostDateText(post)) + '</div>' +
+      getAttachmentDetailHtml(post) +
+      '<div class="detail-content">' + escapeHtml(post.content || "").replace(/\n/g, "<br>") + '</div>' +
+      actionHtml;
+
+    var detailEditBtn = document.getElementById("detailEditBtn");
+    var detailDeleteBtn = document.getElementById("detailDeleteBtn");
+
+    if (detailEditBtn) {
+      detailEditBtn.onclick = function() {
+        startEditPost(this.getAttribute("data-id"));
+      };
+    }
+
+    if (detailDeleteBtn) {
+      detailDeleteBtn.onclick = function() {
+        deletePost(this.getAttribute("data-id"));
+      };
+    }
+  }
+
+  function applySearch() {
+    var keyword = (searchInput.value || "").toLowerCase().trim();
+    if (!keyword) {
+      renderPosts(cachedPosts);
+      return;
+    }
+
+    var filtered = cachedPosts.filter(function(post) {
+      return String(post.title || "").toLowerCase().indexOf(keyword) > -1 ||
+             String(post.writer || "").toLowerCase().indexOf(keyword) > -1 ||
+             String(post.content || "").toLowerCase().indexOf(keyword) > -1;
+    });
+
+    renderPosts(filtered);
+  }
+
+  function loadPosts() {
+    if (!db) return;
+
+    setStatus("게시글을 불러오는 중입니다...");
+
+    db.collection("boards")
+      .orderBy("createdAt", "desc")
+      .get()
+      .then(function(snapshot) {
+        cachedPosts = [];
+        snapshot.forEach(function(doc) {
+          var data = doc.data();
+          data.id = doc.id;
+          cachedPosts.push(data);
+        });
+        applySearch();
+        setStatus("게시글을 불러왔습니다.");
+      })
+      .catch(function(error) {
+        console.error(error);
+
+        db.collection("boards").get()
+          .then(function(snapshot) {
+            cachedPosts = [];
+            snapshot.forEach(function(doc) {
+              var data = doc.data();
+              data.id = doc.id;
+              cachedPosts.push(data);
+            });
+            cachedPosts.sort(function(a, b) {
+              return String(formatDate(b.createdAt)).localeCompare(String(formatDate(a.createdAt)));
+            });
+            applySearch();
+            setStatus("게시글을 기본 방식으로 불러왔습니다.");
+          })
+          .catch(function(error2) {
+            console.error(error2);
+            setStatus("게시글을 불러오지 못했습니다. Firestore 규칙 또는 인터넷 연결을 확인하세요.", true);
+            boardList.innerHTML = '<tr><td colspan="5" class="empty">Firebase 연결 실패</td></tr>';
+          });
+      });
+  }
+
+  function startEditPost(id) {
+    if (!isAdmin) {
+      alert("관리자만 수정할 수 있습니다.");
+      return;
+    }
+
+    var post = null;
+    for (var i = 0; i < cachedPosts.length; i++) {
+      if (cachedPosts[i].id === id) {
+        post = cachedPosts[i];
+        break;
+      }
+    }
+
+    if (!post) {
+      alert("수정할 글을 찾지 못했습니다.");
+      return;
+    }
+
+    editingPostId = id;
+    titleInput.value = post.title || "";
+    writerInput.value = post.writer || "관리자";
+    contentInput.value = post.content || "";
+    attachmentUrlInput.value = post.attachmentUrl || post.attachmentLink || post.fileUrl || post.downloadUrl || "";
+    attachmentNameInput.value = post.attachmentName || post.fileName || post.filename || "";
+    if (attachmentKindInput) {
+      var editKind = post.attachmentKind || post.fileKind || post.kind || "auto";
+      attachmentKindInput.value = (editKind === "image" || editKind === "video" || editKind === "doc") ? editKind : "auto";
+    }
+
+    writeTitleText.innerHTML = "글 수정";
+    editingLabel.innerHTML = "선택한 글을 수정 중입니다.";
+    savePostBtn.innerHTML = "수정 저장";
+    cancelEditBtn.style.display = "";
+
+    writeBox.className = "write-box show";
+    adminOnlyNote.style.display = "none";
+
+    try {
+      writeBox.scrollIntoView({behavior:"smooth", block:"start"});
+    } catch (e) {}
+  }
+
+  function savePost(e) {
+    e.preventDefault();
+
+    var title = titleInput.value.trim();
+    var writer = writerInput.value.trim() || (isAdmin ? "관리자" : "글쓴이 없음");
+    var content = contentInput.value.trim();
+
+    if (!title) {
+      alert("제목을 입력하세요.");
+      titleInput.focus();
+      return;
+    }
+
+    if (!content) {
+      alert("내용을 입력하세요.");
+      contentInput.focus();
+      return;
+    }
+
+    if (editingPostId) {
+      if (!isAdmin) {
+        alert("수정은 관리자만 할 수 있습니다.");
+        return;
+      }
+
+      var editAttachment = getAttachmentLinkData();
+      var updateData = {
+        title: title,
+        writer: writer,
+        content: content,
+        attachmentUrl: editAttachment.attachmentUrl,
+        attachmentName: editAttachment.attachmentName,
+        attachmentKind: editAttachment.attachmentKind,
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+        updatedBy: currentUser ? currentUser.email : ""
+      };
+
+      setStatus("게시글을 수정하는 중입니다...");
+      db.collection("boards").doc(editingPostId).update(updateData)
+      .then(function() {
+        resetWriteForm();
+        setStatus("게시글이 수정되었습니다.");
+        loadPosts();
+      })
+      .catch(function(error) {
+        console.error(error);
+        setStatus("게시글 수정에 실패했습니다. Firestore 규칙을 확인하세요.", true);
+        alert("수정 실패: " + error.message);
+      });
+
+      return;
+    }
+
+    var newAttachment = getAttachmentLinkData();
+    var postData = {
+      title: title,
+      writer: writer,
+      content: content,
+      attachmentUrl: newAttachment.attachmentUrl,
+      attachmentName: newAttachment.attachmentName,
+      attachmentKind: newAttachment.attachmentKind,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      uid: currentUser ? currentUser.uid : "",
+      email: currentUser ? currentUser.email : ""
+    };
+
+    setStatus("게시글을 저장하는 중입니다...");
+    db.collection("boards").add(postData)
+    .then(function() {
+      resetWriteForm();
+      setStatus("게시글이 저장되었습니다.");
+      loadPosts();
+    })
+    .catch(function(error) {
+      console.error(error);
+      setStatus("게시글 저장에 실패했습니다. Firestore 규칙을 확인하세요.", true);
+      alert("저장 실패: " + error.message);
+    });
+  }
+
+  function deletePost(id) {
+    if (!isAdmin) {
+      alert("관리자만 삭제할 수 있습니다.");
+      return;
+    }
+
+    if (!confirm("이 글을 삭제할까요?")) return;
+
+    setStatus("게시글을 삭제하는 중입니다...");
+
+    db.collection("boards").doc(id).delete()
+      .then(function() {
+        if (editingPostId === id) {
+          resetWriteForm();
+        }
+        setStatus("게시글이 삭제되었습니다.");
+        loadPosts();
+      })
+      .catch(function(error) {
+        console.error(error);
+        setStatus("삭제 실패. Firestore 규칙을 확인하세요.", true);
+        alert("삭제 실패: " + error.message);
+      });
+  }
+
+  function login() {
+    var email = loginEmail.value.trim();
+    var password = loginPassword.value;
+
+    if (!email || !password) {
+      alert("이메일과 비밀번호를 입력하세요.");
+      return;
+    }
+
+    setAuthMessage("로그인 중입니다...", false);
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .catch(function(error) {
+        console.error(error);
+        setAuthMessage("로그인 실패: " + error.message, true);
+      });
+  }
+
+  function logout() {
+    firebase.auth().signOut();
+  }
+
+  function start() {
+    try {
+      if (!window.firebase) {
+        setStatus("Firebase SDK를 불러오지 못했습니다. 인터넷 연결을 확인하세요.", true);
+        return;
+      }
+
+      if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+      }
+
+      db = firebase.firestore();
+
+      writeForm.onsubmit = savePost;
+      searchInput.oninput = applySearch;
+      reloadBtn.onclick = loadPosts;
+      loginBtn.onclick = login;
+      logoutBtn.onclick = logout;
+      cancelEditBtn.onclick = resetWriteForm;
+      attachmentCloseBtn.onclick = closeAttachmentPopup;
+      attachmentFullBtn.onclick = function() {
+        if (currentAttachmentUrl) window.open(currentAttachmentUrl, "_blank", "noopener");
+      };
+      attachmentPopupMask.onclick = function(ev) {
+        if (ev.target === attachmentPopupMask) closeAttachmentPopup();
+      };
+      document.onclick = function(ev) {
+        var target = ev.target || ev.srcElement;
+        if (target && target.className && String(target.className).indexOf("attachment-open-btn") > -1) {
+          ev.stopPropagation();
+          openAttachmentPopup(target.getAttribute("data-url"), target.getAttribute("data-name"), target.getAttribute("data-kind"));
+        }
+      };
+
+      firebase.auth().onAuthStateChanged(function(user) {
+        currentUser = user;
+        isAdmin = !!(user && user.email === ADMIN_EMAIL);
+        updateAuthUI();
+      });
+
+      loadPosts();
+    } catch (error) {
+      console.error(error);
+      setStatus("Firebase 초기화 실패: " + error.message, true);
+    }
+  }
+
+  start();
+})();
+</script>
+</body>
+</html>

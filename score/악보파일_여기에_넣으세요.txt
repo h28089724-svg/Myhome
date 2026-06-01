@@ -1,0 +1,1 @@
+악보 PDF 파일을 이 score 폴더에 넣고, Firebase music 문서의 scorePath에 예: score/The Legend Of Autumn.pdf 처럼 입력하세요.

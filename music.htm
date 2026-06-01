@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>Music - 낮엔 해처럼 밤엔 달처럼</title>
+<style>
+A:link{ text-decoration:none; color:#B9CBE4; }
+A:visited{ text-decoration:none; color:#B9CBE4; }
+A:active{ text-decoration:none; color:#FFFFFF; }
+A:hover{ text-decoration:none; color:#ffcc66; }
+
+body{
+  margin:0;
+  background:#0B1622;
+  color:#d8e3f2;
+  font-family:Gulim, Arial, sans-serif;
+  font-size:9pt;
+}
+
+.wrap{
+  width:670px;
+  margin:24px auto;
+  border:1px solid #000;
+  background:#000921;
+}
+
+.topbar{
+  height:22px;
+  background:#000;
+  color:#999;
+  line-height:22px;
+  padding-left:8px;
+  border-bottom:1px solid #000;
+}
+
+.hero{
+  width:668px;
+  min-height:130px;
+  background:#162940 url("image/intro_image/background.gif");
+  border-left:1px solid #000;
+  border-right:1px solid #000;
+}
+
+.hero table{ border-collapse:collapse; }
+
+.hero-title{
+  width:334px;
+  height:130px;
+  vertical-align:top;
+  background:#0d1d30;
+  color:#fff;
+}
+
+.hero-title .big{
+  color:#ffcc66;
+  font-weight:bold;
+  font-size:16px;
+  padding:18px 0 0 18px;
+}
+
+.hero-title .sub{
+  color:#9fb9d6;
+  line-height:1.7;
+  padding:18px;
+}
+
+.menu-box{
+  width:224px;
+  height:130px;
+  background:url("image/intro_image/background.gif");
+  vertical-align:top;
+}
+
+.menu-box img{
+  display:block;
+  width:224px;
+  height:22px;
+  border:0;
+}
+
+.content{
+  min-height:500px;
+  padding:18px;
+  background:#000921;
+  border-top:1px solid #000;
+}
+
+.section-title{
+  color:#ffcc66;
+  font-weight:bold;
+  font-size:15px;
+  margin-bottom:8px;
+}
+
+.notice{
+  border:1px solid #243b56;
+  background:#08182b;
+  color:#bcd0e8;
+  padding:10px;
+  line-height:1.7;
+  margin-bottom:14px;
+}
+
+.version-mark{
+  color:#ffcc66;
+  font-weight:bold;
+}
+
+.auth-box{
+  display:block !important;
+  visibility:visible !important;
+  border:2px solid #ffcc66;
+  background:#071426;
+  padding:12px;
+  margin-bottom:14px;
+}
+
+.auth-title{
+  color:#ffcc66;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+.auth-row{
+  display:flex;
+  gap:6px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.auth-row input{
+  height:28px;
+  background:#061426;
+  color:#eef7ff;
+  border:1px solid #2d4d72;
+  padding:0 8px;
+  font-family:Gulim, Arial, sans-serif;
+  font-size:12px;
+}
+
+.auth-row input[type="email"]{ width:220px; }
+.auth-row input[type="password"]{ width:150px; }
+
+.auth-row button,
+.toolbar button,
+.music-form button{
+  height:30px;
+  background:#23496f;
+  color:#fff;
+  border:1px solid #5c7fa5;
+  cursor:pointer;
+  font-family:Gulim, Arial, sans-serif;
+  font-size:12px;
+}
+
+.auth-message{
+  color:#9fc7ff;
+  margin-top:8px;
+  line-height:1.5;
+}
+
+.auth-message.warn{ color:#ffcc99; }
+
+.player-box{
+  border:1px solid #2b4665;
+  background:#071426;
+  padding:14px;
+  margin-bottom:14px;
+}
+
+.now-title{
+  color:#ffcc66;
+  font-weight:bold;
+  font-size:14px;
+  margin-bottom:8px;
+}
+
+.now-meta{
+  color:#9fb9d6;
+  margin-bottom:10px;
+}
+
+audio{
+  width:100%;
+  height:34px;
+}
+
+.toolbar{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.toolbar input{
+  flex:1;
+  height:28px;
+  background:#071426;
+  color:#e9f3ff;
+  border:1px solid #2d4d72;
+  padding:0 8px;
+  font-family:Gulim, Arial, sans-serif;
+  font-size:12px;
+}
+
+.status{
+  color:#9fc7ff;
+  font-size:12px;
+  margin:8px 0 12px 0;
+}
+
+.status.error{ color:#ff9999; }
+
+.music-table{
+  width:100%;
+  border-collapse:collapse;
+  background:#061426;
+  border:1px solid #2b4665;
+  margin-bottom:14px;
+}
+
+.music-table th{
+  background:#132840;
+  color:#d7e7fb;
+  border-bottom:1px solid #2b4665;
+  height:28px;
+  font-weight:normal;
+}
+
+.music-table td{
+  border-bottom:1px solid #172d47;
+  height:30px;
+  color:#c7d9ee;
+  padding:4px 6px;
+}
+
+.music-table tr:hover td{
+  background:#0e2742;
+  color:#fff;
+  cursor:pointer;
+}
+
+.music-table .no{
+  width:38px;
+  text-align:center;
+  color:#91a9c3;
+}
+
+.music-table .title{ width:210px; }
+.music-table .genre{ width:75px; text-align:center; }
+.music-table .artist{ width:90px; text-align:center; }
+.music-table .score{ width:65px; text-align:center; }
+.music-table .admin-col{
+  width:92px;
+  text-align:center;
+  white-space:nowrap;
+}
+
+.score-link{
+  display:inline-block;
+  padding:3px 7px;
+  border:1px solid #5c7fa5;
+  background:#173457;
+  color:#fff !important;
+  font-size:11px;
+}
+
+.no-score{
+  color:#6f8299;
+  font-size:11px;
+}
+
+.edit-btn{
+  height:22px;
+  background:#263f5d;
+  color:#fff;
+  border:1px solid #58799d;
+  cursor:pointer;
+  font-size:11px;
+  margin-right:4px;
+}
+
+.delete-btn{
+  height:22px;
+  background:#4d2630;
+  color:#fff;
+  border:1px solid #8a4c58;
+  cursor:pointer;
+  font-size:11px;
+}
+
+.empty{
+  text-align:center;
+  color:#8fa8c6;
+  padding:18px !important;
+}
+
+.detail{
+  border:1px solid #2b4665;
+  background:#071426;
+  min-height:105px;
+  padding:14px;
+  margin-bottom:16px;
+}
+
+.detail-title{
+  color:#ffcc66;
+  font-weight:bold;
+  font-size:15px;
+  margin-bottom:8px;
+}
+
+.detail-meta{
+  color:#8fb0d2;
+  border-bottom:1px solid #203a59;
+  padding-bottom:8px;
+  margin-bottom:12px;
+  line-height:1.8;
+}
+
+.detail-content{
+  color:#e6f0fb;
+  line-height:1.8;
+}
+
+.form-box{
+  border:1px solid #2b4665;
+  background:#08182b;
+  padding:14px;
+  display:block; /* 로그오프 상태에서도 곡 등록 영역 표시 */
+}
+
+.form-box.show{ display:block; }
+
+.form-title{
+  color:#ffcc66;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
+.editing-label{
+  color:#ffcc66;
+  font-size:12px;
+  margin-left:8px;
+}
+
+.music-form label{
+  display:block;
+  color:#bcd0e8;
+  margin:8px 0 4px 0;
+}
+
+.music-form input,
+.music-form textarea{
+  width:100%;
+  box-sizing:border-box;
+  background:#061426;
+  color:#eef7ff;
+  border:1px solid #2d4d72;
+  padding:8px;
+  font-family:Gulim, Arial, sans-serif;
+  font-size:12px;
+}
+
+.music-form textarea{
+  height:80px;
+  resize:vertical;
+  line-height:1.6;
+}
+
+.music-form .button-row{
+  text-align:right;
+  margin-top:10px;
+}
+
+.cancel-btn{
+  background:#3a3a3a !important;
+  border:1px solid #777 !important;
+  margin-right:6px;
+}
+
+.admin-only-note{
+  color:#9fb9d6;
+  border:1px dashed #2d4d72;
+  padding:10px;
+  margin-bottom:16px;
+  background:#061426;
+}
+
+.bottom-links{
+  margin-top:18px;
+  text-align:center;
+}
+
+.bottom-links a{
+  display:inline-block;
+  padding:5px 9px;
+  border:1px solid #2d4d72;
+  background:#071426;
+  color:#bcd0e8;
+  margin:0 2px;
+}
+</style>
+
+<script language="JavaScript">
+function na_restore_img_src(name, nsdoc){
+  var img = document.getElementsByName(name)[0];
+  if (img && img.altsrc) {
+    img.src = img.altsrc;
+    img.altsrc = null;
+  }
+}
+function na_change_img_src(name, nsdoc, rpath, preload){
+  var img = document.getElementsByName(name)[0];
+  if (img) {
+    img.altsrc = img.src;
+    img.src = rpath;
+  }
+}
+function na_preload_img(){
+  if (document.preloadlist == null) document.preloadlist = [];
+  for (var i=1; i<arguments.length; i++) {
+    var img = new Image();
+    img.src = arguments[i];
+    document.preloadlist.push(img);
+  }
+}
+</script>
+</head>
+
+<body OnLoad="na_preload_img(false, 'image/intro_memu_btn/myprofile.gif', 'image/intro_memu_btn/passion.gif', 'image/intro_memu_btn/memory.gif', 'image/intro_memu_btn/music.gif', 'image/intro_memu_btn/board.gif', 'image/intro_memu_btn/family.gif');">
+
+<div class="wrap">
+  <div class="topbar">
+    <a href="test1.html">낮엔 해처럼 밤엔 달처럼</a>
+  </div>
+
+  <div class="hero">
+    <table width="668" cellpadding="0" cellspacing="0">
+      <tr>
+        <td class="hero-title">
+          <div class="big">Music</div>
+          <div class="sub">
+            Firebase Firestore와 연결된<br>
+            음악 감상실입니다.
+          </div>
+        </td>
+        <td width="108" height="130" background="image/intro_image/1112715142_3.gif">&nbsp;</td>
+        <td class="menu-box">
+          <a href="profile.htm" OnMouseOut="na_restore_img_src('a001','document')" OnMouseOver="na_change_img_src('a001','document','image/intro_memu_btn/myprofile.gif',true)"><img src="image/intro_memu_btn/myprofile1.gif" alt="나의프로필" name="a001"></a>
+          <a href="passion.htm" OnMouseOut="na_restore_img_src('a002','document')" OnMouseOver="na_change_img_src('a002','document','image/intro_memu_btn/passion.gif',true)"><img src="image/intro_memu_btn/passion1.gif" alt="나의 열정들" name="a002"></a>
+          <a href="memory.htm" OnMouseOut="na_restore_img_src('a003','document')" OnMouseOver="na_change_img_src('a003','document','image/intro_memu_btn/memory.gif',true)"><img src="image/intro_memu_btn/memory1.gif" alt="추억의 사진들" name="a003"></a>
+          <a href="music.htm" OnMouseOut="na_restore_img_src('a004','document')" OnMouseOver="na_change_img_src('a004','document','image/intro_memu_btn/music.gif',true)"><img src="image/intro_memu_btn/music1.gif" alt="음악만이 내세상" name="a004"></a>
+          <a href="board.htm" OnMouseOut="na_restore_img_src('a005','document')" OnMouseOver="na_change_img_src('a005','document','image/intro_memu_btn/board.gif',true)"><img src="image/intro_memu_btn/board1.gif" alt="가슴을 담은 이야기들" name="a005"></a>
+          <a href="family.htm" OnMouseOut="na_restore_img_src('a006','document')" OnMouseOver="na_change_img_src('a006','document','image/intro_memu_btn/family.gif',true)"><img src="image/intro_memu_btn/family1.gif" alt="가족앨범" name="a006"></a>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="content">
+    <div class="section-title">음악만이 내 세상</div>
+
+    <div class="notice">
+      <span class="version-mark">Music 3단계 완성본:</span>
+      목록은 <b>번호 | 곡명 | 장르 | 아티스트 | 악보</b> 순서로 표시됩니다.
+      <b>관리</b> 항목은 관리자 로그인 후에만 표시됩니다.
+    </div>
+
+    <div class="auth-box">
+      <div class="auth-title">관리자 로그인 <span style="color:#ffffff;font-weight:normal;">(곡 등록·수정·삭제용)</span></div>
+      <div id="loginArea" class="auth-row" style="display:flex;">
+        <input type="email" id="loginEmail" value="h28089724@gmail.com" placeholder="관리자 이메일">
+        <input type="password" id="loginPassword" placeholder="비밀번호">
+        <button type="button" id="loginBtn">로그인</button>
+      </div>
+      <div id="logoutArea" class="auth-row" style="display:none;">
+        <span id="loginInfo"></span>
+        <button type="button" id="logoutBtn">로그아웃</button>
+      </div>
+      <div id="authMessage" class="auth-message">로그인 전에도 곡 등록은 가능하며, 수정·삭제는 관리자 로그인 후에만 표시됩니다.</div>
+    </div>
+
+    <div class="player-box">
+      <div id="nowTitle" class="now-title">곡을 선택하세요.</div>
+      <div id="nowMeta" class="now-meta">목록에서 곡을 클릭하면 재생됩니다.</div>
+      <audio id="musicPlayer" controls preload="none"></audio>
+    </div>
+
+    <div class="toolbar">
+      <input type="text" id="musicSearch" placeholder="곡명, 장르, 아티스트, 설명 검색">
+      <button type="button" id="reloadBtn">새로고침</button>
+    </div>
+
+    <div id="statusBox" class="status">Firebase 연결 준비 중...</div>
+
+    <table class="music-table">
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>곡명</th>
+          <th>장르</th>
+          <th>아티스트</th>
+          <th>악보</th>
+          <th id="adminHead" style="display:none;">관리</th>
+        </tr>
+      </thead>
+      <tbody id="musicList">
+        <tr><td colspan="5" class="empty">음악 목록을 불러오는 중입니다.</td></tr>
+      </tbody>
+    </table>
+
+    <div id="musicDetail" class="detail">
+      <div class="detail-title">상세정보</div>
+      <div class="detail-content">위쪽 목록에서 곡을 선택하면 정보가 표시됩니다.</div>
+    </div>
+
+    <div id="adminOnlyNote" class="admin-only-note">
+      곡 등록은 로그인 전에도 가능합니다. 수정·삭제는 관리자 로그인 후에만 가능합니다.
+    </div>
+
+    <div id="formBox" class="form-box show">
+      <div class="form-title"><span id="formTitleText">새 곡 등록</span><span id="editingLabel" class="editing-label"></span></div>
+      <form id="musicForm" class="music-form">
+        <label for="musicTitle">곡명</label>
+        <input type="text" id="musicTitle" maxlength="100">
+
+        <label for="musicGenre">장르</label>
+        <input type="text" id="musicGenre" value="가요" maxlength="50">
+
+        <label for="musicArtist">아티스트/연주자</label>
+        <input type="text" id="musicArtist" value="-" maxlength="50">
+
+        <label for="musicFilePath">MP3 파일 경로</label>
+        <input type="text" id="musicFilePath" value="sound/The Legend Of Autumn.mp3">
+
+        <label for="musicScorePath">악보 파일 경로</label>
+        <input type="text" id="musicScorePath" value="score/The Legend Of Autumn.pdf">
+
+        <label for="musicMemo">설명</label>
+        <textarea id="musicMemo"></textarea>
+
+        <div class="button-row">
+          <button type="button" id="cancelEditBtn" class="cancel-btn" style="display:none;">수정 취소</button>
+          <button type="submit" id="saveMusicBtn">저장</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="bottom-links">
+      <a href="test1.html">Home</a>
+      <a href="profile.htm">Profile</a>
+      <a href="passion.htm">Passion</a>
+      <a href="memory.htm">Memory</a>
+      <a href="board.htm">Board</a>
+      <a href="family.htm">Family</a>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/12.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore-compat.js"></script>
+
+<script>
+(function(){
+  var ADMIN_EMAIL = "h28089724@gmail.com";
+
+  var firebaseConfig = {
+    apiKey: "AIzaSyDZL_49FvVD9tGUlzP_FCQMdI80xpn8Upg",
+    authDomain: "hkd-myhome.firebaseapp.com",
+    projectId: "hkd-myhome",
+    storageBucket: "hkd-myhome.firebasestorage.app",
+    messagingSenderId: "488602177315",
+    appId: "1:488602177315:web:a40ce0832db87e95fd4696",
+    measurementId: "G-0LG0HLP3YN"
+  };
+
+  var db = null;
+  var cachedMusic = [];
+  var currentUser = null;
+  var isAdmin = false;
+  var editingMusicId = null;
+
+  var musicList = document.getElementById("musicList");
+  var musicDetail = document.getElementById("musicDetail");
+  var musicForm = document.getElementById("musicForm");
+  var musicTitle = document.getElementById("musicTitle");
+  var musicGenre = document.getElementById("musicGenre");
+  var musicArtist = document.getElementById("musicArtist");
+  var musicFilePath = document.getElementById("musicFilePath");
+  var musicScorePath = document.getElementById("musicScorePath");
+  var musicMemo = document.getElementById("musicMemo");
+  var statusBox = document.getElementById("statusBox");
+  var searchInput = document.getElementById("musicSearch");
+  var reloadBtn = document.getElementById("reloadBtn");
+  var formBox = document.getElementById("formBox");
+  var adminOnlyNote = document.getElementById("adminOnlyNote");
+  var adminHead = document.getElementById("adminHead");
+  var formTitleText = document.getElementById("formTitleText");
+  var editingLabel = document.getElementById("editingLabel");
+  var cancelEditBtn = document.getElementById("cancelEditBtn");
+  var saveMusicBtn = document.getElementById("saveMusicBtn");
+  var player = document.getElementById("musicPlayer");
+  var nowTitle = document.getElementById("nowTitle");
+  var nowMeta = document.getElementById("nowMeta");
+
+  var loginArea = document.getElementById("loginArea");
+  var logoutArea = document.getElementById("logoutArea");
+  var loginEmail = document.getElementById("loginEmail");
+  var loginPassword = document.getElementById("loginPassword");
+  var loginBtn = document.getElementById("loginBtn");
+  var logoutBtn = document.getElementById("logoutBtn");
+  var loginInfo = document.getElementById("loginInfo");
+  var authMessage = document.getElementById("authMessage");
+
+  function setStatus(message, error) {
+    statusBox.innerHTML = escapeHtml(message);
+    statusBox.className = error ? "status error" : "status";
+  }
+
+  function setAuthMessage(message, warn) {
+    authMessage.innerHTML = escapeHtml(message);
+    authMessage.className = warn ? "auth-message warn" : "auth-message";
+  }
+
+  function escapeHtml(text) {
+    return String(text == null ? "" : text)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function formatDate(value) {
+    if (!value) return "";
+    try {
+      if (value && typeof value.toDate === "function") {
+        return value.toDate().toLocaleString("ko-KR");
+      }
+      return String(value);
+    } catch (e) {
+      return "";
+    }
+  }
+
+  function scoreLinkHtml(item) {
+    var scorePath = item.scorePath || "";
+    if (!scorePath) {
+      return '<span class="no-score">없음</span>';
+    }
+    return '<a class="score-link" href="' + escapeHtml(scorePath) + '" download onclick="event.stopPropagation();">악보</a>';
+  }
+
+  function resetForm() {
+    editingMusicId = null;
+    musicForm.reset();
+    musicGenre.value = "가요";
+    musicArtist.value = "-";
+    musicFilePath.value = "sound/The Legend Of Autumn.mp3";
+    musicScorePath.value = "score/The Legend Of Autumn.pdf";
+    formTitleText.innerHTML = "새 곡 등록";
+    editingLabel.innerHTML = "";
+    saveMusicBtn.innerHTML = "저장";
+    cancelEditBtn.style.display = "none";
+  }
+
+  function updateAuthUI() {
+    if (isAdmin) {
+      loginArea.style.display = "none";
+      logoutArea.style.display = "flex";
+      loginInfo.innerHTML = "관리자 로그인 중: " + escapeHtml(currentUser.email);
+      formBox.className = "form-box show";
+      adminOnlyNote.style.display = "none";
+      adminHead.style.display = "";
+      setAuthMessage("관리자 권한으로 곡 등록·수정·삭제가 가능합니다.", false);
+    } else {
+      resetForm();
+      loginArea.style.display = "flex";
+      logoutArea.style.display = "none";
+      loginInfo.innerHTML = "";
+      formBox.className = "form-box show";
+      adminOnlyNote.style.display = "";
+      adminHead.style.display = "none";
+
+      if (currentUser && currentUser.email !== ADMIN_EMAIL) {
+        setAuthMessage("로그인했지만 관리자 이메일이 아닙니다. 듣기만 가능합니다.", true);
+      } else {
+        setAuthMessage("로그인 전에도 곡 등록은 가능하며, 수정·삭제는 관리자 로그인 후에만 표시됩니다.", false);
+      }
+    }
+
+    renderMusic(cachedMusic);
+  }
+
+  function renderMusic(items) {
+    var colspan = isAdmin ? 6 : 5;
+
+    if (!items.length) {
+      musicList.innerHTML = '<tr><td colspan="' + colspan + '" class="empty">등록된 음악이 없습니다.</td></tr>';
+      return;
+    }
+
+    var html = "";
+    for (var i = 0; i < items.length; i++) {
+      var item = items[i];
+
+      html += '<tr class="music-row" data-id="' + escapeHtml(item.id) + '">' +
+        '<td class="no">' + (items.length - i) + '</td>' +
+        '<td class="title">' + escapeHtml(item.title || "(곡명 없음)") + '</td>' +
+        '<td class="genre">' + escapeHtml(item.genre || "-") + '</td>' +
+        '<td class="artist">' + escapeHtml(item.artist || "-") + '</td>' +
+        '<td class="score">' + scoreLinkHtml(item) + '</td>';
+
+      if (isAdmin) {
+        html += '<td class="admin-col">' +
+          '<button type="button" class="edit-btn" data-edit-id="' + escapeHtml(item.id) + '">수정</button>' +
+          '<button type="button" class="delete-btn" data-delete-id="' + escapeHtml(item.id) + '">삭제</button>' +
+          '</td>';
+      }
+
+      html += '</tr>';
+    }
+
+    musicList.innerHTML = html;
+
+    var rows = document.querySelectorAll(".music-row");
+    for (var r = 0; r < rows.length; r++) {
+      rows[r].onclick = function(e) {
+        if (e.target && (e.target.getAttribute("data-delete-id") || e.target.getAttribute("data-edit-id"))) return;
+        var id = this.getAttribute("data-id");
+        for (var j = 0; j < cachedMusic.length; j++) {
+          if (cachedMusic[j].id === id) {
+            playMusic(cachedMusic[j]);
+            break;
+          }
+        }
+      };
+    }
+
+    var editBtns = document.querySelectorAll(".edit-btn");
+    for (var e = 0; e < editBtns.length; e++) {
+      editBtns[e].onclick = function(ev) {
+        ev.stopPropagation();
+        startEditMusic(this.getAttribute("data-edit-id"));
+      };
+    }
+
+    var deleteBtns = document.querySelectorAll(".delete-btn");
+    for (var d = 0; d < deleteBtns.length; d++) {
+      deleteBtns[d].onclick = function(ev) {
+        ev.stopPropagation();
+        deleteMusic(this.getAttribute("data-delete-id"));
+      };
+    }
+  }
+
+  function renderDetail(item) {
+    var scoreHtml = "";
+    if (item.scorePath) {
+      scoreHtml = ' &nbsp; | &nbsp; <a class="score-link" href="' + escapeHtml(item.scorePath) + '" download>악보 다운로드</a>';
+    }
+
+    musicDetail.innerHTML =
+      '<div class="detail-title">' + escapeHtml(item.title || "(곡명 없음)") + '</div>' +
+      '<div class="detail-meta">장르: ' + escapeHtml(item.genre || "-") +
+      ' &nbsp; | &nbsp; 아티스트: ' + escapeHtml(item.artist || "-") +
+      ' &nbsp; | &nbsp; 등록일: ' + escapeHtml(formatDate(item.createdAt)) +
+      scoreHtml + '</div>' +
+      '<div class="detail-content">' + escapeHtml(item.memo || "").replace(/\n/g, "<br>") + '</div>';
+  }
+
+  function playMusic(item) {
+    var path = item.filePath || "";
+
+    nowTitle.innerHTML = escapeHtml(item.title || "(곡명 없음)");
+    nowMeta.innerHTML = "장르: " + escapeHtml(item.genre || "-") +
+      " / 아티스트: " + escapeHtml(item.artist || "-");
+
+    player.src = path;
+    player.load();
+    renderDetail(item);
+
+    var playPromise = player.play();
+    if (playPromise && playPromise.catch) {
+      playPromise.catch(function(){
+        setStatus("곡이 선택되었습니다. 브라우저 정책상 재생 버튼을 한 번 눌러야 할 수 있습니다.");
+      });
+    }
+  }
+
+  function applySearch() {
+    var keyword = (searchInput.value || "").toLowerCase().trim();
+
+    if (!keyword) {
+      renderMusic(cachedMusic);
+      return;
+    }
+
+    var filtered = cachedMusic.filter(function(item) {
+      return String(item.title || "").toLowerCase().indexOf(keyword) > -1 ||
+             String(item.genre || "").toLowerCase().indexOf(keyword) > -1 ||
+             String(item.artist || "").toLowerCase().indexOf(keyword) > -1 ||
+             String(item.memo || "").toLowerCase().indexOf(keyword) > -1;
+    });
+
+    renderMusic(filtered);
+  }
+
+  function loadMusic() {
+    if (!db) return;
+
+    setStatus("음악 목록을 불러오는 중입니다...");
+
+    db.collection("music")
+      .orderBy("createdAt", "desc")
+      .get()
+      .then(function(snapshot) {
+        cachedMusic = [];
+        snapshot.forEach(function(doc) {
+          var data = doc.data();
+          data.id = doc.id;
+          cachedMusic.push(data);
+        });
+
+        applySearch();
+        setStatus("음악 목록을 불러왔습니다.");
+        if (cachedMusic.length) renderDetail(cachedMusic[0]);
+      })
+      .catch(function(error) {
+        console.error(error);
+
+        db.collection("music").get()
+          .then(function(snapshot) {
+            cachedMusic = [];
+            snapshot.forEach(function(doc) {
+              var data = doc.data();
+              data.id = doc.id;
+              cachedMusic.push(data);
+            });
+
+            applySearch();
+            setStatus("음악 목록을 기본 방식으로 불러왔습니다.");
+            if (cachedMusic.length) renderDetail(cachedMusic[0]);
+          })
+          .catch(function(error2) {
+            console.error(error2);
+            setStatus("음악 목록을 불러오지 못했습니다. Firestore 규칙 또는 인터넷 연결을 확인하세요.", true);
+            musicList.innerHTML = '<tr><td colspan="' + (isAdmin ? 6 : 5) + '" class="empty">Firebase 연결 실패</td></tr>';
+          });
+      });
+  }
+
+  function startEditMusic(id) {
+    if (!isAdmin) {
+      alert("관리자만 수정할 수 있습니다.");
+      return;
+    }
+
+    var item = null;
+    for (var i = 0; i < cachedMusic.length; i++) {
+      if (cachedMusic[i].id === id) {
+        item = cachedMusic[i];
+        break;
+      }
+    }
+
+    if (!item) {
+      alert("수정할 곡을 찾지 못했습니다.");
+      return;
+    }
+
+    editingMusicId = id;
+    musicTitle.value = item.title || "";
+    musicGenre.value = item.genre || "가요";
+    musicArtist.value = item.artist || "-";
+    musicFilePath.value = item.filePath || "";
+    musicScorePath.value = item.scorePath || "";
+    musicMemo.value = item.memo || "";
+
+    formTitleText.innerHTML = "곡 정보 수정";
+    editingLabel.innerHTML = "선택한 곡을 수정 중입니다.";
+    saveMusicBtn.innerHTML = "수정 저장";
+    cancelEditBtn.style.display = "";
+
+    formBox.className = "form-box show";
+
+    try {
+      formBox.scrollIntoView({behavior:"smooth", block:"start"});
+    } catch (e) {}
+  }
+
+  function saveMusic(e) {
+    e.preventDefault();
+
+    var title = musicTitle.value.trim();
+    var genre = musicGenre.value.trim() || "가요";
+    var artist = musicArtist.value.trim() || "-";
+    var filePath = musicFilePath.value.trim();
+    var scorePath = musicScorePath.value.trim();
+    var memo = musicMemo.value.trim();
+
+    if (!title) {
+      alert("곡명을 입력하세요.");
+      musicTitle.focus();
+      return;
+    }
+
+    if (!filePath) {
+      alert("MP3 파일 경로를 입력하세요.");
+      musicFilePath.focus();
+      return;
+    }
+
+    if (editingMusicId) {
+      if (!isAdmin) {
+        alert("관리자만 수정할 수 있습니다.");
+        return;
+      }
+
+      setStatus("곡 정보를 수정하는 중입니다...");
+
+      db.collection("music").doc(editingMusicId).update({
+        title: title,
+        genre: genre,
+        artist: artist,
+        filePath: filePath,
+        scorePath: scorePath,
+        memo: memo,
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+        updatedBy: currentUser ? currentUser.email : ""
+      })
+      .then(function() {
+        resetForm();
+        setStatus("곡 정보가 수정되었습니다.");
+        loadMusic();
+      })
+      .catch(function(error) {
+        console.error(error);
+        setStatus("곡 정보 수정에 실패했습니다. Firestore 규칙을 확인하세요.", true);
+        alert("수정 실패: " + error.message);
+      });
+
+      return;
+    }
+
+    setStatus("곡 정보를 저장하는 중입니다...");
+
+    db.collection("music").add({
+      title: title,
+      genre: genre,
+      artist: artist,
+      filePath: filePath,
+      scorePath: scorePath,
+      memo: memo,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      uid: currentUser ? currentUser.uid : "",
+      email: currentUser ? currentUser.email : ""
+    })
+    .then(function() {
+      resetForm();
+      setStatus("곡 정보가 저장되었습니다.");
+      loadMusic();
+    })
+    .catch(function(error) {
+      console.error(error);
+      setStatus("곡 정보 저장에 실패했습니다. Firestore 규칙을 확인하세요.", true);
+      alert("저장 실패: " + error.message);
+    });
+  }
+
+  function deleteMusic(id) {
+    if (!isAdmin) {
+      alert("관리자만 삭제할 수 있습니다.");
+      return;
+    }
+
+    if (!confirm("이 곡 정보를 삭제할까요? 실제 MP3 파일과 악보 파일은 삭제되지 않습니다.")) return;
+
+    setStatus("곡 정보를 삭제하는 중입니다...");
+
+    db.collection("music").doc(id).delete()
+      .then(function() {
+        if (editingMusicId === id) resetForm();
+        setStatus("곡 정보가 삭제되었습니다.");
+        loadMusic();
+      })
+      .catch(function(error) {
+        console.error(error);
+        setStatus("삭제 실패. Firestore 규칙을 확인하세요.", true);
+        alert("삭제 실패: " + error.message);
+      });
+  }
+
+  function login() {
+    var email = loginEmail.value.trim();
+    var password = loginPassword.value;
+
+    if (!email || !password) {
+      alert("이메일과 비밀번호를 입력하세요.");
+      return;
+    }
+
+    setAuthMessage("로그인 중입니다...", false);
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .catch(function(error) {
+        console.error(error);
+        setAuthMessage("로그인 실패: " + error.message, true);
+      });
+  }
+
+  function logout() {
+    firebase.auth().signOut();
+  }
+
+  function start() {
+    try {
+      if (!window.firebase) {
+        setStatus("Firebase SDK를 불러오지 못했습니다. 인터넷 연결을 확인하세요.", true);
+        return;
+      }
+
+      if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+      }
+
+      db = firebase.firestore();
+
+      musicForm.onsubmit = saveMusic;
+      searchInput.oninput = applySearch;
+      reloadBtn.onclick = loadMusic;
+      loginBtn.onclick = login;
+      logoutBtn.onclick = logout;
+      cancelEditBtn.onclick = resetForm;
+
+      firebase.auth().onAuthStateChanged(function(user) {
+        currentUser = user;
+        isAdmin = !!(user && user.email === ADMIN_EMAIL);
+        updateAuthUI();
+      });
+
+      loadMusic();
+    } catch (error) {
+      console.error(error);
+      setStatus("Firebase 초기화 실패: " + error.message, true);
+    }
+  }
+
+  start();
+})();
+</script>
+</body>
+</html>

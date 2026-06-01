@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- local fixed for C:/Myhome -->
+<?
+/* LOCAL_PATH_FIX: C:/Myhome 로컬 실행용 제로보드 경로 */
+$_zb_url="bbs/";
+$_zb_path="./bbs/";
+if (file_exists($_zb_path."outlogin.php")) {
+    include $_zb_path."outlogin.php";
+}
+?>
+<!-- HKD_LOCAL_MENU_FIXED: 메뉴 링크를 C:\Myhome 로컬 실행용 상대경로로 재연결 -->
+<HTML>
+<!-- LOCAL_PATH_FIX: old server absolute links converted for C:/Myhome relative execution. -->
+
+<HEAD><TITLE>selfish giant</TITLE>
+<META content="text/html; charset=utf-8" http-equiv=Content-Type>
+<STYLE type=text/css>.text {
+	COLOR: #e2e2e2; FONT-SIZE: 9pt; TEXT-DECORATION: none
+}
+</STYLE>
+
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR>
+<bgsound src="sarangbi_bgm/The Legend Of Autumn.mp3" loop="infinite">
+<base target="_top">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script language="JavaScript">
+<!--
+function na_restore_img_src(name, nsdoc)
+{
+  var img = eval((navigator.appName.indexOf('Netscape', 0) != -1) ? nsdoc+'.'+name : 'document.all.'+name);
+  if (name == '')
+    return;
+  if (img && img.altsrc) {
+    img.src    = img.altsrc;
+    img.altsrc = null;
+  } 
+}
+
+function na_preload_img()
+{ 
+  var img_list = na_preload_img.arguments;
+  if (document.preloadlist == null) 
+    document.preloadlist = new Array();
+  var top = document.preloadlist.length;
+  for (var i=0; i < img_list.length-1; i++) {
+    document.preloadlist[top+i] = new Image;
+    document.preloadlist[top+i].src = img_list[i+1];
+  } 
+}
+
+function na_change_img_src(name, nsdoc, rpath, preload)
+{ 
+  var img = eval((navigator.appName.indexOf('Netscape', 0) != -1) ? nsdoc+'.'+name : 'document.all.'+name);
+  if (name == '')
+    return;
+  if (img) {
+    img.altsrc = img.src;
+    img.src    = rpath;
+  } 
+}
+
+// --></script>
+
+</HEAD>
+<BODY bgColor="#1F334B" OnLoad="na_preload_img(false, 'image/intro_memu_btn/myprofile.gif', 'image/intro_memu_btn/passion.gif', 'image/intro_memu_btn/memory.gif', 'image/intro_memu_btn/music.gif', 'image/intro_memu_btn/board.gif', 'image/intro_memu_btn/family.gif');"><p align="center">&nbsp;</p>
+<TABLE align=center cellPadding=0 cellSpacing=0 width="670" style="border-collapse:collapse;">
+  <TBODY>
+  <TR>
+        <TD bgColor="#455D78" width="670" style="border-width:1; border-color:black; border-style:solid;" height="12" valign="middle">
+<p align="left"><img src="image/intro_memu_btn/intro_top_title.gif" width="224" height="22" border="0"></p>
+</TD></TR>
+  <TR>
+        <td width="670" align="center" style="border-width:1; border-color:black; border-style:solid;" height="213" valign="middle">
+            <table width="668" cellpadding="0" cellspacing="0" background="image/intro_image/background.gif">
+                <tr>
+                    <td width="334" height="150">
+                        <p align="center"><? print_bbs("holosun_bbs11","자유게시판","free",3,25)?></p>
+</td>
+                    <td width="334" height="150" colspan="2">
+                        <p align="center"><? print_bbs("jeju_new/jeju-c","연습과감상","pds1",3,25)?></p>
+</td>
+                </tr>
+                <tr>
+                    <td width="334">&nbsp;</td>
+                    <td width="91">&nbsp;</td>
+                    <td width="242">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td width="334" height="130">
+                        <p align="center"><? print_gallery("nzeo/cyan_gallery","겔러리","gallery1",2,125,100,2)?></p>
+</td>
+                    <td width="100" height="130" background="image/intro_image/20050706.gif">&nbsp;</td>
+                    <td width="234" height="130">                        <div align="right">
+                            <TABLE cellPadding=0 cellSpacing=0 width="218">
+                                <TR>
+                                    <TD bgColor=#314965 vAlign=top width="215" bordercolordark="gray" bordercolorlight="white" height="130" background="image/intro_image/background.gif">
+
+                                        <p align="left">
+	  
+	  
+	  <a href="profile.htm" OnMouseOut="na_restore_img_src('a001', 'document')" OnMouseOver="na_change_img_src('a001', 'document', 'image/intro_memu_btn/myprofile.gif', true);" target="_top"><IMG border=0 
+            height="22" src="image/intro_memu_btn/myprofile1.gif" 
+            width="224" alt="성가대소개" name="a001"></a><a href="passion.htm" OnMouseOut="na_restore_img_src('a002', 'document')" OnMouseOver="na_change_img_src('a002', 'document', 'image/intro_memu_btn/passion.gif', true);" target="_top"><IMG 
+            border=0 height="22" src="image/intro_memu_btn/passion1.gif" 
+            width="224" alt="후밀리따스 지난 이야기들" name="a002"></a><BR><a href="memory.htm" OnMouseOut="na_restore_img_src('a003', 'document')" OnMouseOver="na_change_img_src('a003', 'document', 'image/intro_memu_btn/memory.gif', true);" target="_top"><IMG border=0 height=22 
+            src="image/intro_memu_btn/memory1.gif" width="224" alt="음악감상실" name="a003"></a><BR><a href="music.htm" OnMouseOut="na_restore_img_src('a004', 'document')" OnMouseOver="na_change_img_src('a004', 'document', 'image/intro_memu_btn/music.gif', true);" target="_top"><IMG border=0 height=22 
+            src="image/intro_memu_btn/music1.gif" width="224" alt="자료실" name="a004"></a><BR><a href="board.htm" OnMouseOut="na_restore_img_src('a005', 'document')" OnMouseOver="na_change_img_src('a005', 'document', 'image/intro_memu_btn/board.gif', true);" target="_top"><IMG border=0 height="22" 
+            src="image/intro_memu_btn/board1.gif" width="224" alt="메일보내기" name="a005"></a><a href="family.htm" OnMouseOut="na_restore_img_src('a006', 'document')" OnMouseOver="na_change_img_src('a006', 'document', 'image/intro_memu_btn/family.gif', true);" target="_top"><br><IMG border=0 height="22" 
+            src="image/intro_memu_btn/family1.gif" width="224" alt="게시판으로 가기" name="a006"></a></p>
+</TD>
+</TR>
+</TABLE>
+                        </div>
+</td>
+                </tr>
+            </table>
+</td>
+</TR>
+  <TR>
+        <TD align=middle style="border-top-width:1; border-right-width:1; border-bottom-width:1; border-left-width:1; border-color:black; border-style:solid;" width="670" height="12" valign="middle" bgcolor="black">
+            <p align="center"><span style="font-size:8pt;"><font color="#666666">Copy right is all reserved H.K.D 2005</font></span></p>
+<font color="#CCCCCC"></font></TD></TR></TBODY></TABLE><font color="#CCCCCC"></font></BODY></HTML>
